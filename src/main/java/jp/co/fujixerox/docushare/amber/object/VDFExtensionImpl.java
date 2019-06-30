@@ -9,13 +9,12 @@ import java.net.URLClassLoader;
 
 import org.apache.log4j.Logger;
 
-import jp.co.fujixerox.docushare.amber.DSWebException;
-import jp.co.fujixerox.docushare.amber.VDFSession;
-
-import com.genwyse.Properties;
-import com.genwyse.PropertyManager;
+import com.genwyse.tools.Properties;
 import com.xerox.docushare.DSException;
 import com.xerox.docushare.impl.util.DSUtil;
+
+import jp.co.fujixerox.docushare.amber.DSWebException;
+import jp.co.fujixerox.docushare.amber.VDFSession;
 
 
 public abstract class VDFExtensionImpl extends VDFBaseProxyObject
@@ -36,7 +35,7 @@ public abstract class VDFExtensionImpl extends VDFBaseProxyObject
 				config_path = DSUtil.getConfigLocation(propPropFile);
 				File prop_file = new File (config_path);
 
-				properties = PropertyManager.getProperties(prop_file);
+				properties = com.genwyse.tools.PropertyManager.getProperties(prop_file);
 				logger.info("Le fichier de configuration est:" + config_path);
 			} catch (DSException e) {
 				logger.error("Le fichier de configuration " + config_path + " n'a pas été trouvé");

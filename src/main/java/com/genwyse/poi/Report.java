@@ -173,12 +173,12 @@ public class Report  {
   }
   
   /*
-   * Insï¿½re un bloc de lignes.
-   * Les styles du bloc original sont copiï¿½s sur demande.
+   * Insère un bloc de lignes.
+   * Les styles du bloc original sont copiés sur demande.
    */
   protected void insertLines (Sheet sheet, int at_row, int from_row, int row_count, boolean copy_styles)
   {
-    // Dï¿½calage vers le bas
+    // Décalage vers le bas
     sheet.shiftRows(at_row, sheet.getLastRowNum(), row_count);
     for (int num_line = 0; num_line<row_count; num_line++) {
       Row inserted_row = sheet.getRow(at_row+num_line);
@@ -238,13 +238,13 @@ public class Report  {
     Name named_region = workbook.getName(data_name);
 
     if (named_region!=null) {
-      // Emplacement de la table: feuille, cellule dï¿½but, cellule fin
+      // Emplacement de la table: feuille, cellule début, cellule fin
       AreaReference area_ref = new AreaReference(named_region.getRefersToFormula());
       CellReference first_cell_ref = area_ref.getFirstCell();
       CellReference last_cell_ref = area_ref.getLastCell();
       Sheet sheet = workbook.getSheet(first_cell_ref.getSheetName());
       
-      // Numï¿½ro de ligne de la table
+      // Numéro de ligne de la table
       int num_line = getTableHeight (data_name);
       
       int data_row = first_cell_ref.getRow();
@@ -267,7 +267,7 @@ public class Report  {
           int num_col = first_data_cell.getColumnIndex();
           int num_row = data_row+num_line*line_count;
           if (line_count>1) {
-            // Zone de donnï¿½es sur plusieurs lignes, il faut dï¿½terminer la position relative de la cellule
+            // Zone de données sur plusieurs lignes, il faut déterminer la position relative de la cellule
             int relative_row = first_data_cell.getRowIndex() - data_row;
             num_row += relative_row;
           }

@@ -21,7 +21,7 @@ import com.xerox.docushare.DSFactory;
 import com.xerox.docushare.DSServer;
 import com.xerox.docushare.DSSession;
 
-import excel.util.Excel2XML;
+import com.dtrules.compiler.excel.util.Excel2XML;
 
 public class RulesTable {
 	private static Logger logger = Logger.getLogger(RulesTable.class);
@@ -125,22 +125,22 @@ public class RulesTable {
 						
 			// Entités de test
 			IREntity e = ((RSession)session).createEntity(null,"addMenuCheck");
-      e.put(RName.getRName("addMenuCheck.parentHandle"), RString.newRString("Collection-65"));
-      e.put(RName.getRName("addMenuCheck.childClass"), RString.newRString("Coll_service"));
+      e.put(session, RName.getRName("addMenuCheck.parentHandle"), RString.newRString("Collection-65"));
+      e.put(session, RName.getRName("addMenuCheck.childClass"), RString.newRString("Coll_service"));
       session.getState().entitypush(e);
       t.executeDecisionTables(session);     
       logger.info(e.get("parentHandle") + " " + e.get("childClass") + " canAdd:"+session.getState().find("addMenuCheck.canAdd"));
       
-      e.put(RName.getRName("canAdd"), RInteger.getRIntegerValue(-1));
-      e.put(RName.getRName("addMenuCheck.parentHandle"), RString.newRString("Coll_projet-17"));
-      e.put(RName.getRName("addMenuCheck.childClass"), RString.newRString("Collection"));
+      e.put(session, RName.getRName("canAdd"), RInteger.getRIntegerValue(-1));
+      e.put(session, RName.getRName("addMenuCheck.parentHandle"), RString.newRString("Coll_projet-17"));
+      e.put(session, RName.getRName("addMenuCheck.childClass"), RString.newRString("Collection"));
       session.getState().entitypush(e);
       t.executeDecisionTables(session);     
       logger.info(e.get("parentHandle") + " " + e.get("childClass") + " canAdd:"+session.getState().find("addMenuCheck.canAdd"));
       
-      e.put(RName.getRName("canAdd"), RInteger.getRIntegerValue(-1));
-      e.put(RName.getRName("addMenuCheck.parentHandle"), RString.newRString("Coll_projet-17"));
-      e.put(RName.getRName("addMenuCheck.childClass"), RString.newRString("project_document"));
+      e.put(session, RName.getRName("canAdd"), RInteger.getRIntegerValue(-1));
+      e.put(session, RName.getRName("addMenuCheck.parentHandle"), RString.newRString("Coll_projet-17"));
+      e.put(session, RName.getRName("addMenuCheck.childClass"), RString.newRString("project_document"));
       session.getState().entitypush(e);
       t.executeDecisionTables(session);     
       logger.info(e.get("parentHandle") + " " + e.get("childClass") + " canAdd:"+session.getState().find("addMenuCheck.canAdd"));

@@ -17,7 +17,7 @@ package com.genwyse.docushare.rules;
 
 import com.genwyse.docushare.rules.operator.GetProperty;
 
-import excel.util.Excel2XML;
+import com.dtrules.compiler.excel.util.Excel2XML;
 
 
 /**

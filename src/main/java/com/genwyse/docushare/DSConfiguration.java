@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import org.apache.log4j.Logger;
 
-import com.genwyse.Properties;
+import com.genwyse.tools.Properties;
 import com.xerox.docushare.impl.util.DSUtil;
 
 public class DSConfiguration extends Properties {

@@ -90,12 +90,12 @@ public class DSGenwyse {
     String[] link_types = { DSLinkDesc.containment} ;
     boolean with_terminal_object = false;
     
-    // L'object rï¿½sultat
+    // L'object résultat
     DSAncestries ancestries = new DSAncestries ();
     
     DSLinkIterator link_list = dssession.getSourcesLinkPairs(handles, link_types, true, null, new DSSelectSet(new String[] { "title" }));
     
-    // Mettre les ï¿½lï¿½ments de la liste dans un tableau pour faciliter les parcours
+    // Mettre les éléments de la liste dans un tableau pour faciliter les parcours
     Map<DSHandle,DSAncestryNode> nodes = new HashMap<DSHandle,DSAncestryNode> ();
     
     // Construit un graphe bidirectionnel des objets
@@ -119,7 +119,7 @@ public class DSGenwyse {
       parent_node.children.add(child_node);
     }
     
-    // Racines des lignï¿½es: la root_collection si fournie, ou les racines trouvï¿½es
+    // Racines des lignées: la root_collection si fournie, ou les racines trouvées
     List<DSAncestryNode> roots = new LinkedList<DSAncestryNode>();
     if (root_collection!=null) {
       DSAncestryNode root_node = nodes.get(root_collection.getHandle());
@@ -127,7 +127,7 @@ public class DSGenwyse {
         roots.add(root_node);
       }
       else {
-        // La collection racine voulue n'est pas dans les ancï¿½tres => lignï¿½e vide
+        // La collection racine voulue n'est pas dans les ancètres => lignée vide
         return ancestries;
       }
     }
@@ -144,7 +144,7 @@ public class DSGenwyse {
       }
     }
     
-    int num_last_path = 0; // ï¿½ incrï¿½menter ï¿½ chaque parcours
+    int num_last_path = 0; // à incrémenter à chaque parcours
     for (Iterator<DSAncestryNode> i_root=roots.iterator(); i_root.hasNext();) {
       DSAncestryNode root_node = i_root.next();
       
@@ -158,9 +158,9 @@ public class DSGenwyse {
       
       Iterator<DSAncestryNode[]> i_path = path.allPaths.iterator();
       while (i_path.hasNext()) {
-        // Rï¿½cupï¿½rer les lignï¿½es.
-        // NB: Les chamins trouvï¿½s dans le graphe comportent les noeuds dï¿½part et arrivï¿½e, on ne veut
-        // pas le noeud arrivï¿½e.
+        // Récupérer les lignées.
+        // NB: Les chamins trouvés dans le graphe comportent les noeuds départ et arrivée, on ne veut
+        // pas le noeud arrivée.
         DSAncestryNode[] path_nodes = i_path.next();
         int nb_objects = path_nodes.length;
         if (!with_terminal_object) {
@@ -201,7 +201,7 @@ public class DSGenwyse {
     while (i_child.hasNext()) {
       DSAncestryNode child_node = i_child.next();
       if (child_node.numRun < current_path.numPath) {
-        // pas dï¿½jï¿½ parcouru dans ce chemin
+        // pas déjà parcouru dans ce chemin
         child_node.numRun = current_path.numPath;
         current_path.currentStack.push(child_node);
         end_of_path = false;
@@ -214,7 +214,7 @@ public class DSGenwyse {
         // Enlever le noeud
         current_path.currentStack.pop();
         
-        // Tentative de chemin suivant : incrï¿½menter le numï¿½ro de parcours, tous les noeuds de la pile prennent ce numï¿½ro
+        // Tentative de chemin suivant : incrémenter le numéro de parcours, tous les noeuds de la pile prennent ce numéro
         current_path.numPath++;
         for (Iterator<DSAncestryNode> i_node = current_path.currentStack.iterator(); i_node.hasNext(); ) {
           i_node.next().numRun = current_path.numPath;
@@ -222,7 +222,7 @@ public class DSGenwyse {
       }
     }
     if (end_of_path) {
-      // On est arrivï¿½ ï¿½ un bout du graphe 
+      // On est arrivé à un bout du graphe 
       
       // Enregistrement du parcours
       
@@ -401,10 +401,10 @@ public class DSGenwyse {
     return coll;
   }
   
-  // Vï¿½rification qu'un objet est au bon endroit dans un plan de classement, et dï¿½placement
-  // ï¿½ventuel.
+  // Vérification qu'un objet est au bon endroit dans un plan de classement, et déplacement
+  // éventuel.
   public static boolean isAtRightLocation(DSObject obj, DSCollection expected_parent, DSHandle root_handle, boolean move) throws DSAuthorizationException, DSException {
-    // La collection parente a-t-elle changï¿½ ?
+    // La collection parente a-t-elle changé ?
     boolean dossier_dans_bon_parent = false;
     DSObjectIterator i_parent = obj.getParents(null);
     while (i_parent.hasNext()) {
@@ -416,13 +416,13 @@ public class DSGenwyse {
       
       else if (move) {
         // Le dossier parent n'est pas celui attendu.
-        // Pour le dï¿½placement, il faut enlever l'objet de sa collection parente
-        // ï¿½ condition que celle-ci soit dans l'arborescence sous root, les
-        // ï¿½ventuels liens direct sur l'objet hors plan de classement ne sont pas 
-        // modifiï¿½s.
-        logger.info("Dï¿½placement de la branche "+obj.getHandle()+" depuis la collection"+coll_parent.getHandle()+" vers la collection "+expected_parent.getHandle());
+        // Pour le déplacement, il faut enlever l'objet de sa collection parente
+        // à condition que celle-ci soit dans l'arborescence sous root, les
+        // éventuels liens direct sur l'objet hors plan de classement ne sont pas 
+        // modifiés.
+        logger.info("Déplacement de la branche "+obj.getHandle()+" depuis la collection"+coll_parent.getHandle()+" vers la collection "+expected_parent.getHandle());
         if (isAncestor(coll_parent, root_handle)) {
-          // On a remontï¿½ ï¿½ la racine du plan de classement via ce parent, on supprime le lien
+          // On a remonté à la racine du plan de classement via ce parent, on supprime le lien
           coll_parent.removeChild(obj);
         }
       }
@@ -440,7 +440,7 @@ public class DSGenwyse {
     while (i_ancestor.hasNext()) {
       DSCollection coll_ancestor = (DSCollection) i_ancestor.nextObject();
       if (coll_ancestor.getHandle().equals(root_handle)) {
-        // On a remontï¿½ ï¿½ la racine voulue via les liens de containment
+        // On a remonté à la racine voulue via les liens de containment
         return true;
       }
     }

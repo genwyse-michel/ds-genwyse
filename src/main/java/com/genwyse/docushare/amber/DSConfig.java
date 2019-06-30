@@ -32,19 +32,19 @@ public class DSConfig extends jp.co.fujixerox.docushare.amber.config.DSConfig {
     }
   }
   
-  /* Docushare ne transmet pas les informations sur la requï¿½te lors de la 
-   * gï¿½nï¿½ration des pages par amber. Les chemins sont donc reconstituï¿½s en
-   * utilisant la valeur en configuration, fixï¿½e ï¿½ l'installation de DocuShare.
-   * => on ne peut pas avoir 2 applications tomcat au sein du mï¿½me serveur tomcat.
-   * => utilisation d'une classe DSWebServlet dï¿½diï¿½e avec gestion de cette information
-   * => enregistrement de l'URL dans les donnï¿½es du Thread au dï¿½but du traitement
-   * des requï¿½tes (on ne peut pas modifier les donnï¿½es de l'objet DSConfig car
-   * il peut y avoir un changement de thread entre le dï¿½but de traitement de la
-   * requï¿½te et la gï¿½nï¿½ration de la page). 
+  /* Docushare ne transmet pas les informations sur la requête lors de la 
+   * génération des pages par amber. Les chemins sont donc reconstitués en
+   * utilisant la valeur en configuration, fixée à l'installation de DocuShare.
+   * => on ne peut pas avoir 2 applications tomcat au sein du même serveur tomcat.
+   * => utilisation d'une classe DSWebServlet dédiée avec gestion de cette information
+   * => enregistrement de l'URL dans les données du Thread au début du traitement
+   * des requêtes (on ne peut pas modifier les données de l'objet DSConfig car
+   * il peut y avoir un changement de thread entre le début de traitement de la
+   * requête et la génération de la page). 
    * => modification du fonctionnement de DSConfig: l'url racine est d'abord
-   * recherchï¿½e dans les donnï¿½es du Thread.
+   * recherchée dans les données du Thread.
    * 
-   *  NB: Pour modifier le DSConfig utilisï¿½ il a fallu remplacer ConfigManager dans
+   *  NB: Pour modifier le DSConfig utilisé il a fallu remplacer ConfigManager dans
    *  amber.jar.
    */
   //

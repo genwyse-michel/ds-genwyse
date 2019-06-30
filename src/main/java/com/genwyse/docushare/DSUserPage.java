@@ -11,7 +11,7 @@ import com.xerox.docushare.amber.pages.common.SessionPage;
 import com.xerox.docushare.impl.util.DSLogger;
 
 public abstract class DSUserPage extends SessionPage {
-
+  
   /**
    * 
    */
