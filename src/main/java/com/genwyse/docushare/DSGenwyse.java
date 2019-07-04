@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Stack;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
 
@@ -379,9 +377,6 @@ public class DSGenwyse {
 	    DSProperties rendition_props = rendition_class.createPrototype();
 
 	    DSContentElement[] contents = new DSContentElement[] { new FileContentElement(content_file.getPath(), ds_filename, true) };
-	    String content_type = null;
-	    DSLoginPrincipal owner = null;
-	    DSAclEntry[] acl = null;
 	    
 	    DSHandle version_handle = doc.addVersion(version_props, rendition_props, contents);
 	    DSVersion version = (DSVersion) dssession.getObject(version_handle);

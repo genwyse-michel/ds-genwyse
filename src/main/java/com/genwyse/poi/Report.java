@@ -507,6 +507,10 @@ public class Report  {
           CellUtil.setCellStyleProperty(cell, workbook, CellUtil.BORDER_RIGHT, style.value);
         }
         break;
+      case MiddleHorizontal:
+      case MiddleVertical:
+        // Non traité
+        break;
       }
     }
   }
